@@ -68,6 +68,12 @@ class DataBase:
         self.newwindow.btn = Button(text="Add", command=self.confirmrecord)
         self.newwindow.btn.grid(row=4, column=0)
         
+    # Confirm Add Record:
+    def confirmrecord(self):
+        Students.update({self.newwindow.stu_roll.get(): [self.newwindow.stu_name.get(), int(self.newwindow.stu_age.get()), self.newwindow.stu_dep.get()]})
+        
+        self.newwindow.destroy()
+        DataBase()    
         
     # Update Record:
     def updaterecord_fn(self):
@@ -90,7 +96,7 @@ class DataBase:
     def updaterollentities(self):
         self.updatewindow.destroy()
         
-        Update_entities()
+        Update_entities()   
     
     #Find Record:
     def findrecord_fn(self):
@@ -98,15 +104,27 @@ class DataBase:
     
     # Delete Record:
     def deleterecord_fn(self):
-        pass
-    
-     # Confirm Add Record:
-    def confirmrecord(self):
-        Students.update({self.newwindow.stu_roll.get(): [self.newwindow.stu_name.get(), int(self.newwindow.stu_age.get()), self.newwindow.stu_dep.get()]})
+        self.window.destroy()
         
-        self.newwindow.destroy()
-        DataBase()    
-    
+        self.delwindow = Tk()
+        self.delwindow.title("Delete Record")
+        
+        self.delwindow.find_roll_label = Label(text="Roll Number: ")
+        self.delwindow.find_roll_label.grid(row=0, column=0)
+        
+        global del_roll
+        del_roll = StringVar()
+        self.delwindow.find_roll = Entry(master=self.delwindow, textvariable=del_roll)
+        self.delwindow.find_roll.grid(row=0, column=1)
+        
+        self.delwindow.btn = Button(text="Find", command=self.deleteitem)
+        self.delwindow.btn.grid(row=1, column=0)
+        
+    def deleteitem(self):
+        Students.pop(del_roll.get())
+        self.delwindow.destroy()
+        
+        DataBase()
 
 class Update_entities:
     def __init__(self):
@@ -143,6 +161,7 @@ class Update_entities:
     def confirmname(self):
         Students[find_roll.get()][0] = self.updateitem.update_name.get()
         self.updateitem.destroy()
+        
         DataBase()
         
     def updateage(self):
