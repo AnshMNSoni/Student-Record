@@ -68,7 +68,7 @@ class DataBase:
         self.newwindow.stu_dep = Entry(master=self.newwindow, textvariable=get_dep, font=FONT1)
         self.newwindow.stu_dep.grid(row=3, column=1, pady=10)
         
-        self.newwindow.btn = Button(text="Add", command=self.confirmrecord, font=FONT1, width=18)
+        self.newwindow.btn = Button(text="Add", command=self.confirmrecord, font=FONT1, width=18, bg="Light Green", bd=5)
         self.newwindow.btn.grid(row=4, column=1, pady=30)
         
     # Confirm Add Record:
@@ -97,7 +97,7 @@ class DataBase:
         self.updatewindow.find_roll = Entry(master=self.updatewindow, textvariable=find_roll, font=FONT1)
         self.updatewindow.find_roll.grid(row=0, column=1, pady=10)
         
-        self.updatewindow.btn = Button(text="Find", command=self.updaterollentities, font=FONT1, width=18)
+        self.updatewindow.btn = Button(text="Find", command=self.updaterollentities, font=FONT1, width=18, bg="Light Green", bd=5)
         self.updatewindow.btn.grid(row=1, column=1, pady=30)
     
     def updaterollentities(self):
@@ -111,26 +111,46 @@ class DataBase:
         
         self.findwindow = Tk()
         self.findwindow.title("Student Records")
-        self.findwindow.config(padx=20, pady=20, bg=WINBG)
-        
-        
+        self.findwindow.config(padx=20, pady=20, bg="Light Blue")
+    
+        # Create a Canvas to hold the table
+        canvas = Canvas(self.findwindow, bg="Light Yellow", width=730, height=300)
+        canvas.pack(side="left", fill="both", expand=True)
+    
+        # Add a vertical scrollbar
+        scrollbar = Scrollbar(self.findwindow, orient="vertical", command=canvas.yview)
+        scrollbar.pack(side="right", fill="y")
+    
+        # Configure canvas and scrollbar interaction
+        canvas.configure(yscrollcommand=scrollbar.set)
+        canvas.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+    
+        # Create a frame inside the canvas
+        frame = Frame(canvas, bg="Light Yellow")
+        canvas.create_window((0, 0), window=frame, anchor="nw")
+    
         # Create the header row
-        self.findwindow.lbl1 = Label(text="ROLL NO", borderwidth=1, relief="solid", width=12, height=2).grid(row=0, column=0, padx=5, pady=5)
-        
+        Label(frame, text="ROLL NO", borderwidth=1, relief="solid", width=14, height=2, bg="Light Green", font=("Roboto", 15, 'bold')).grid(row=0, column=0, padx=5, pady=5)
         for col, header in enumerate(["NAME", "AGE", "DEPARTMENT"], start=1):
-            self.findwindow.lbl2 = Label(text=header, borderwidth=1, relief="solid", width=12, height=2).grid(row=0, column=col, padx=5, pady=5)
-        
+            Label(frame, text=header, borderwidth=1, relief="solid", width=14, height=2, bg="Light Green", font=("Roboto", 15, 'bold')).grid(row=0, column=col, padx=5, pady=5)
+    
         # Display the dictionary in the grid
         for row, (key, values) in enumerate(Students.items(), start=1):
             # Add the row header (key)
-            self.findwindow.lbl3 = Label(text=key, borderwidth=1, relief="solid", width=12, height=2).grid(row=row, column=0, padx=5, pady=5)
-            
+            Label(frame, text=key, borderwidth=1, relief="solid", width=14, height=2, font=("Roboto", 13, 'normal')).grid(row=row, column=0, padx=5, pady=5)
             # Add the list values as columns
             for col, value in enumerate(values, start=1):
-                self.findwindow.lbl3 = Label(text=str(value), borderwidth=1, relief="solid", width=12, height=2).grid(row=row, column=col, padx=5, pady=5)
-                        
-        self.findwindow.mainloop()
+                Label(frame, text=str(value), borderwidth=1, relief="solid", width=14, height=2, font=("Roboto", 13, 'normal')).grid(row=row, column=col, padx=5, pady=5)
     
+        # Add mousewheel for scrolling
+        def on_mouse_wheel(event):
+            canvas.yview_scroll(-1 * int(event.delta / 120), "units")
+    
+        canvas.bind_all("<MouseWheel>", on_mouse_wheel)
+    
+        self.findwindow.mainloop()
+
+
     # Delete Record:
     def deleterecord_fn(self):
         self.window.destroy()
@@ -147,7 +167,7 @@ class DataBase:
         self.delwindow.find_roll = Entry(master=self.delwindow, textvariable=del_roll, font=FONT1)
         self.delwindow.find_roll.grid(row=0, column=1, pady=10)
         
-        self.delwindow.btn = Button(text="Find", command=self.deleteitem, font=FONT1, width=18)
+        self.delwindow.btn = Button(text="Find", command=self.deleteitem, font=FONT1, width=18, bg="Light Green", bd=5)
         self.delwindow.btn.grid(row=1, column=1, pady=30)
         
     def deleteitem(self):
@@ -162,13 +182,13 @@ class Update_entities:
         self.update_item.title("Update Record")
         self.update_item.config(padx=60, pady=30, bg=WINBG)
         
-        self.update_item.namebtn = Button(text="Name", command=self.updatename, font=FONT1)
+        self.update_item.namebtn = Button(text="Name", command=self.updatename, font=FONT1, bg="Light Green", bd=5)
         self.update_item.namebtn.grid(row=0, column=0, pady=25)
         
-        self.update_item.agebtn = Button(text="Age", command=self.updateage, font=FONT1)
+        self.update_item.agebtn = Button(text="Age", command=self.updateage, font=FONT1, bg="Light Blue", bd=5)
         self.update_item.agebtn.grid(row=1, column=0, pady=25)
         
-        self.update_item.depbtn = Button(text="Department", command=self.updatedep, font=FONT1)
+        self.update_item.depbtn = Button(text="Department", command=self.updatedep, font=FONT1, bg="Light Green", bd=5)
         self.update_item.depbtn.grid(row=2, column=0, pady=25)
         
         self.update_item.mainloop()
@@ -187,7 +207,7 @@ class Update_entities:
         self.updateitem.update_name.grid(row=0, column=1, pady=10)
         
         
-        self.updateitem.update_btn = Button(text="Update", command=self.confirmname, font=FONT1, width=18)
+        self.updateitem.update_btn = Button(text="Update", command=self.confirmname, font=FONT1, width=18, bg="Light Green", bd=5)
         self.updateitem.update_btn.grid(row=1, column=1, pady=30)
         
     def confirmname(self):
@@ -209,7 +229,7 @@ class Update_entities:
         self.updateitem.update_age = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
         self.updateitem.update_age.grid(row=0, column=1, pady=10)
         
-        self.updateitem.update_btn = Button(text="Update", command=self.confirmnage, font=FONT1, width=18)
+        self.updateitem.update_btn = Button(text="Update", command=self.confirmnage, font=FONT1, width=18, bg="Light Green", bd=5)
         self.updateitem.update_btn.grid(row=1, column=1, pady=30)
         
     def confirmnage(self):
@@ -230,7 +250,7 @@ class Update_entities:
         self.updateitem.update_dep = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
         self.updateitem.update_dep.grid(row=0, column=1, pady=10)
         
-        self.updateitem.update_btn = Button(text="Update", command=self.confirmndep, font=FONT1, width=18)
+        self.updateitem.update_btn = Button(text="Update", command=self.confirmndep, font=FONT1, width=18, bg="Light Green", bd=5)
         self.updateitem.update_btn.grid(row=1, column=1, pady=30)
         
     def confirmndep(self):
