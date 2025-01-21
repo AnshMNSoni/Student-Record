@@ -114,14 +114,13 @@ class DataBase:
         self.findwindow.config(padx=20, pady=20, bg="Light Blue")
     
         # Create a Canvas to hold the table
-        canvas = Canvas(self.findwindow, bg="Light Yellow", width=730, height=300)
+        canvas = Canvas(self.findwindow, bg="Light Yellow", width=730, height=350)
         canvas.pack(side="left", fill="both", expand=True)
     
         # Add a vertical scrollbar
         scrollbar = Scrollbar(self.findwindow, orient="vertical", command=canvas.yview)
         scrollbar.pack(side="right", fill="y")
     
-        # Configure canvas and scrollbar interaction
         canvas.configure(yscrollcommand=scrollbar.set)
         canvas.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
     
@@ -138,6 +137,7 @@ class DataBase:
         for row, (key, values) in enumerate(Students.items(), start=1):
             # Add the row header (key)
             Label(frame, text=key, borderwidth=1, relief="solid", width=14, height=2, font=("Roboto", 13, 'normal')).grid(row=row, column=0, padx=5, pady=5)
+            
             # Add the list values as columns
             for col, value in enumerate(values, start=1):
                 Label(frame, text=str(value), borderwidth=1, relief="solid", width=14, height=2, font=("Roboto", 13, 'normal')).grid(row=row, column=col, padx=5, pady=5)
