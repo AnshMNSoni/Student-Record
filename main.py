@@ -3,24 +3,25 @@ from tkinter import messagebox, simpledialog
 import json
 
 FONT1 = ('Roboto', 18, 'normal')
+WINBG = "Light Yellow"
 Students = {}
 
 class DataBase:
     def __init__(self) -> None:
         self.window = Tk()
         self.window.title("Student DataBase")
-        self.window.config(padx=40, pady=40)
+        self.window.config(padx=40, pady=40, bg=WINBG)
         
-        self.window.newrecord = Button(text="New Record", font=FONT1, command=self.newrecord_fn)
+        self.window.newrecord = Button(text="New Record", font=FONT1, command=self.newrecord_fn, bd=5, bg="Light Green")
         self.window.newrecord.grid(row=0, column=0, padx=40, pady=40)
         
-        self.window.updaterecord = Button(text="Update Record", font=FONT1, command=self.updaterecord_fn)
+        self.window.updaterecord = Button(text="Update Record", font=FONT1, command=self.updaterecord_fn, bd=5, bg="Light Blue")
         self.window.updaterecord.grid(row=0, column=1, padx=40, pady=40)
         
-        self.window.findrecord = Button(text="All Records", font=FONT1, command=self.findrecord_fn)
+        self.window.findrecord = Button(text="All Records", font=FONT1, command=self.findrecord_fn, bd=5, bg="Light Blue")
         self.window.findrecord.grid(row=1, column=0, padx=40, pady=40)
 
-        self.window.deleterecord = Button(text="Delete Record", font=FONT1, command=self.deleterecord_fn)
+        self.window.deleterecord = Button(text="Delete Record", font=FONT1, command=self.deleterecord_fn, bd=5, bg="Light Green")
         self.window.deleterecord.grid(row=1, column=1, padx=40, pady=40)
         
         
@@ -32,10 +33,10 @@ class DataBase:
         
         self.newwindow = Tk()
         self.newwindow.title("New Record")
-        self.newwindow.config(padx=50, pady=50)
+        self.newwindow.config(padx=50, pady=50, bg=WINBG)
         
         # Student Roll Number
-        self.newwindow.stu_roll_label = Label(text="Roll Number: ", font=FONT1)
+        self.newwindow.stu_roll_label = Label(text="Roll Number: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.newwindow.stu_roll_label.grid(row=0, column=0, pady=10)
         
         get_roll = StringVar()
@@ -44,7 +45,7 @@ class DataBase:
         self.newwindow.stu_roll.focus()
         
         # Student Name 
-        self.newwindow.stu_name_label = Label(text="Name: ", font=FONT1)
+        self.newwindow.stu_name_label = Label(text="Name: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.newwindow.stu_name_label.grid(row=1, column=0, pady=10)
         
         get_name = StringVar()
@@ -52,7 +53,7 @@ class DataBase:
         self.newwindow.stu_name.grid(row=1, column=1, pady=10)
         
         # Student Age
-        self.newwindow.stu_age_label = Label(text="Age: ", font=FONT1)
+        self.newwindow.stu_age_label = Label(text="Age: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.newwindow.stu_age_label.grid(row=2, column=0, pady=10)
         
         get_age = IntVar()
@@ -60,7 +61,7 @@ class DataBase:
         self.newwindow.stu_age.grid(row=2, column=1, pady=10)
         
         # Student Department
-        self.newwindow.stu_dep_label = Label(text="Department: ",font=FONT1)
+        self.newwindow.stu_dep_label = Label(text="Department: ",font=FONT1, bg=WINBG, highlightthickness=0)
         self.newwindow.stu_dep_label.grid(row=3, column=0, pady=10)
         
         get_dep = StringVar()
@@ -86,9 +87,9 @@ class DataBase:
         
         self.updatewindow = Tk()
         self.updatewindow.title("Update Record")
-        self.updatewindow.config(padx=40, pady=40)
+        self.updatewindow.config(padx=40, pady=40, bg=WINBG)
         
-        self.updatewindow.find_roll_label = Label(text="Roll Number: ", font=FONT1)
+        self.updatewindow.find_roll_label = Label(text="Roll Number: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.updatewindow.find_roll_label.grid(row=0, column=0, pady=10)
         
         global find_roll
@@ -110,7 +111,7 @@ class DataBase:
         
         self.findwindow = Tk()
         self.findwindow.title("Student Records")
-        self.findwindow.config(padx=20, pady=20)
+        self.findwindow.config(padx=20, pady=20, bg=WINBG)
         
         
         # Create the header row
@@ -136,9 +137,9 @@ class DataBase:
         
         self.delwindow = Tk()
         self.delwindow.title("Delete Record")
-        self.delwindow.config(padx=40, pady=40)
+        self.delwindow.config(padx=40, pady=40, bg=WINBG)
         
-        self.delwindow.find_roll_label = Label(text="Roll Number: ", font=FONT1)
+        self.delwindow.find_roll_label = Label(text="Roll Number: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.delwindow.find_roll_label.grid(row=0, column=0, pady=10)
         
         global del_roll
@@ -159,7 +160,7 @@ class Update_entities:
     def __init__(self):
         self.update_item = Tk()
         self.update_item.title("Update Record")
-        self.update_item.config(padx=60, pady=30)
+        self.update_item.config(padx=60, pady=30, bg=WINBG)
         
         self.update_item.namebtn = Button(text="Name", command=self.updatename, font=FONT1)
         self.update_item.namebtn.grid(row=0, column=0, pady=25)
@@ -177,9 +178,9 @@ class Update_entities:
         
         self.updateitem = Tk()
         self.updateitem.title("Update Record")
-        self.updateitem.config(padx=30, pady=30)
+        self.updateitem.config(padx=30, pady=30, bg=WINBG)
         
-        self.updateitem.update_name_lbl = Label(text="Name: ", font=FONT1)
+        self.updateitem.update_name_lbl = Label(text="Name: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.updateitem.update_name_lbl.grid(row=0, column=0, pady=10)
         
         self.updateitem.update_name = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
@@ -200,9 +201,9 @@ class Update_entities:
         
         self.updateitem = Tk()
         self.updateitem.title("Update Record")
-        self.updateitem.config(padx=30, pady=30)
+        self.updateitem.config(padx=30, pady=30, bg=WINBG)
         
-        self.updateitem.update_age_lbl = Label(text="Age: ", font=FONT1)
+        self.updateitem.update_age_lbl = Label(text="Age: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.updateitem.update_age_lbl.grid(row=0, column=0, pady=10)
         
         self.updateitem.update_age = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
@@ -221,9 +222,9 @@ class Update_entities:
         
         self.updateitem = Tk()
         self.updateitem.title("Update Record")
-        self.updateitem.config(padx=30, pady=30)
+        self.updateitem.config(padx=30, pady=30, bg=WINBG)
         
-        self.updateitem.update_dep_lbl = Label(text="Department: ", font=FONT1)
+        self.updateitem.update_dep_lbl = Label(text="Department: ", font=FONT1, bg=WINBG, highlightthickness=0)
         self.updateitem.update_dep_lbl.grid(row=0, column=0, pady=10)
         
         self.updateitem.update_dep = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
