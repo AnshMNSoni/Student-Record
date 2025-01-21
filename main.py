@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox, simpledialog
+import json
 
 FONT1 = ('Roboto', 18, 'normal')
 Students = {}
@@ -16,7 +17,7 @@ class DataBase:
         self.window.updaterecord = Button(text="Update Record", font=FONT1, command=self.updaterecord_fn)
         self.window.updaterecord.grid(row=0, column=1, padx=40, pady=40)
         
-        self.window.findrecord = Button(text="Find Record", font=FONT1, command=self.findrecord_fn)
+        self.window.findrecord = Button(text="All Records", font=FONT1, command=self.findrecord_fn)
         self.window.findrecord.grid(row=1, column=0, padx=40, pady=40)
 
         self.window.deleterecord = Button(text="Delete Record", font=FONT1, command=self.deleterecord_fn)
@@ -72,6 +73,9 @@ class DataBase:
     # Confirm Add Record:
     def confirmrecord(self):
         Students.update({self.newwindow.stu_roll.get(): [self.newwindow.stu_name.get(), int(self.newwindow.stu_age.get()), self.newwindow.stu_dep.get()]})
+        
+        # File Handling Baki
+        
         
         self.newwindow.destroy()
         DataBase()    
@@ -155,15 +159,16 @@ class Update_entities:
     def __init__(self):
         self.update_item = Tk()
         self.update_item.title("Update Record")
+        self.update_item.config(padx=60, pady=30)
         
-        self.update_item.namebtn = Button(text="Name", command=self.updatename)
-        self.update_item.namebtn.grid(row=0, column=0)
+        self.update_item.namebtn = Button(text="Name", command=self.updatename, font=FONT1)
+        self.update_item.namebtn.grid(row=0, column=0, pady=25)
         
-        self.update_item.agebtn = Button(text="Age", command=self.updateage)
-        self.update_item.agebtn.grid(row=1, column=0)
+        self.update_item.agebtn = Button(text="Age", command=self.updateage, font=FONT1)
+        self.update_item.agebtn.grid(row=1, column=0, pady=25)
         
-        self.update_item.depbtn = Button(text="Department", command=self.updatedep)
-        self.update_item.depbtn.grid(row=2, column=0)
+        self.update_item.depbtn = Button(text="Department", command=self.updatedep, font=FONT1)
+        self.update_item.depbtn.grid(row=2, column=0, pady=25)
         
         self.update_item.mainloop()
         
@@ -172,16 +177,17 @@ class Update_entities:
         
         self.updateitem = Tk()
         self.updateitem.title("Update Record")
+        self.updateitem.config(padx=30, pady=30)
         
-        self.updateitem.update_name_lbl = Label(text="Name: ")
-        self.updateitem.update_name_lbl.grid(row=0, column=0)
+        self.updateitem.update_name_lbl = Label(text="Name: ", font=FONT1)
+        self.updateitem.update_name_lbl.grid(row=0, column=0, pady=10)
         
-        self.updateitem.update_name = Entry(master=self.updateitem, textvariable=StringVar())
-        self.updateitem.update_name.grid(row=0, column=1)
+        self.updateitem.update_name = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
+        self.updateitem.update_name.grid(row=0, column=1, pady=10)
         
         
-        self.updateitem.update_btn = Button(text="Update", command=self.confirmname)
-        self.updateitem.update_btn.grid(row=1, column=0)
+        self.updateitem.update_btn = Button(text="Update", command=self.confirmname, font=FONT1, width=18)
+        self.updateitem.update_btn.grid(row=1, column=1, pady=30)
         
     def confirmname(self):
         Students[find_roll.get()][0] = self.updateitem.update_name.get()
@@ -194,15 +200,16 @@ class Update_entities:
         
         self.updateitem = Tk()
         self.updateitem.title("Update Record")
+        self.updateitem.config(padx=30, pady=30)
         
-        self.updateitem.update_age_lbl = Label(text="Age: ")
-        self.updateitem.update_age_lbl.grid(row=0, column=0)
+        self.updateitem.update_age_lbl = Label(text="Age: ", font=FONT1)
+        self.updateitem.update_age_lbl.grid(row=0, column=0, pady=10)
         
-        self.updateitem.update_age = Entry(master=self.updateitem, textvariable=StringVar())
-        self.updateitem.update_age.grid(row=0, column=1)
+        self.updateitem.update_age = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
+        self.updateitem.update_age.grid(row=0, column=1, pady=10)
         
-        self.updateitem.update_btn = Button(text="Update", command=self.confirmnage)
-        self.updateitem.update_btn.grid(row=1, column=0)
+        self.updateitem.update_btn = Button(text="Update", command=self.confirmnage, font=FONT1, width=18)
+        self.updateitem.update_btn.grid(row=1, column=1, pady=30)
         
     def confirmnage(self):
         Students[find_roll.get()][1] = int(self.updateitem.update_age.get())
@@ -214,15 +221,16 @@ class Update_entities:
         
         self.updateitem = Tk()
         self.updateitem.title("Update Record")
+        self.updateitem.config(padx=30, pady=30)
         
-        self.updateitem.update_dep_lbl = Label(text="Department: ")
-        self.updateitem.update_dep_lbl.grid(row=0, column=0)
+        self.updateitem.update_dep_lbl = Label(text="Department: ", font=FONT1)
+        self.updateitem.update_dep_lbl.grid(row=0, column=0, pady=10)
         
-        self.updateitem.update_dep = Entry(master=self.updateitem, textvariable=StringVar())
-        self.updateitem.update_dep.grid(row=0, column=1)
+        self.updateitem.update_dep = Entry(master=self.updateitem, textvariable=StringVar(), font=FONT1)
+        self.updateitem.update_dep.grid(row=0, column=1, pady=10)
         
-        self.updateitem.update_btn = Button(text="Update", command=self.confirmndep)
-        self.updateitem.update_btn.grid(row=1, column=0)
+        self.updateitem.update_btn = Button(text="Update", command=self.confirmndep, font=FONT1, width=18)
+        self.updateitem.update_btn.grid(row=1, column=1, pady=30)
         
     def confirmndep(self):
         Students[find_roll.get()][2] = self.updateitem.update_dep.get()
