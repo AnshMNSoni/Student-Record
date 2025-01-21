@@ -159,12 +159,31 @@ class Update_entities:
         self.updateitem.update_age = Entry(master=self.updateitem, textvariable=StringVar())
         self.updateitem.update_age.grid(row=0, column=1)
         
-        
         self.updateitem.update_btn = Button(text="Update", command=self.confirmnage)
         self.updateitem.update_btn.grid(row=1, column=0)
         
     def confirmnage(self):
         Students[find_roll.get()][1] = int(self.updateitem.update_age.get())
+        self.updateitem.destroy()
+        DataBase()
+        
+    def updatedep(self):
+        self.update_item.destroy()
+        
+        self.updateitem = Tk()
+        self.updateitem.title("Update Record")
+        
+        self.updateitem.update_dep_lbl = Label(text="Department: ")
+        self.updateitem.update_dep_lbl.grid(row=0, column=0)
+        
+        self.updateitem.update_dep = Entry(master=self.updateitem, textvariable=StringVar())
+        self.updateitem.update_dep.grid(row=0, column=1)
+        
+        self.updateitem.update_btn = Button(text="Update", command=self.confirmndep)
+        self.updateitem.update_btn.grid(row=1, column=0)
+        
+    def confirmndep(self):
+        Students[find_roll.get()][2] = self.updateitem.update_dep.get()
         self.updateitem.destroy()
         DataBase()
 
