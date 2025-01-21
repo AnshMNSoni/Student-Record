@@ -91,8 +91,6 @@ class DataBase:
         self.updatewindow.destroy()
         
         Update_entities()
-        
-    
     
     #Find Record:
     def findrecord_fn(self):
