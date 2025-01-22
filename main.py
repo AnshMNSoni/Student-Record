@@ -189,7 +189,7 @@ class DataBase:
         self.delwindow.find_roll = Entry(master=self.delwindow, textvariable=del_roll, font=FONT1)
         self.delwindow.find_roll.grid(row=0, column=1, pady=10)
         
-        self.delwindow.btn = Button(text="Find", command=self.deleteitem, font=FONT1, width=18, bg="Light Green", bd=5)
+        self.delwindow.btn = Button(text="Delete", command=self.deleteitem, font=FONT1, width=18, bg="Light Green", bd=5)
         self.delwindow.btn.grid(row=1, column=1, pady=30)
         
     def deleteitem(self):
