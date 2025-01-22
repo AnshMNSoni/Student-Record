@@ -75,8 +75,30 @@ class DataBase:
     def confirmrecord(self):
         Students.update({self.newwindow.stu_roll.get(): [self.newwindow.stu_name.get(), int(self.newwindow.stu_age.get()), self.newwindow.stu_dep.get()]})
         
-        # File Handling Baki
+        global new_data
+        new_data = {
+            self.newwindow.stu_roll.get(): [
+                self.newwindow.stu_name.get(), 
+                int(self.newwindow.stu_age.get()), 
+                self.newwindow.stu_dep.get()
+            ]
+        }
         
+        # Date Storing
+        try:
+            with open('records.json', 'r') as data_file:
+                # Reading old data
+                data = json.load(data_file)
+        
+        except FileNotFoundError:
+            with open('records.json', 'w') as data_file:
+                json.dump(new_data, data_file, indent=4)
+            
+        else:
+            data.update(new_data)
+            
+            with open('records.json', 'w') as data_file:
+                json.dump(data, data_file, indent=4)
         
         self.newwindow.destroy()
         DataBase()    
@@ -171,10 +193,33 @@ class DataBase:
         self.delwindow.btn.grid(row=1, column=1, pady=30)
         
     def deleteitem(self):
-        Students.pop(del_roll.get())
+        roll = del_roll.get()
+
+        # Remove from the Students dictionary.
+        if roll in Students:
+            Students.pop(roll)
+        else:
+            messagebox.showinfo(title="Warning", message="Roll Not Found!")
+
+        # Update the JSON records.
+        try:
+            with open('records.json', 'r') as data_file:
+                data = json.load(data_file)
+
+            if roll in data:
+                data.pop(roll)
+                # Save the updated data back to the file.
+                with open('records.json', 'w') as data_file:
+                    json.dump(data, data_file, indent=4)
+            else:
+                pass
+
+        except FileNotFoundError:
+            messagebox.showerror(title= "Warning", message="File Not Found!")
+
         self.delwindow.destroy()
+        DataBase() 
         
-        DataBase()
 
 class Update_entities:
     def __init__(self):
