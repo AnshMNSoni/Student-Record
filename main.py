@@ -134,7 +134,7 @@ class DataBase:
         self.findwindow = Tk()
         self.findwindow.title("Student Records")
         self.findwindow.config(padx=20, pady=20, bg="Light Blue")
-    
+        
         # Create a Canvas to hold the table
         canvas = Canvas(self.findwindow, bg="Light Yellow", width=730, height=350)
         canvas.pack(side="left", fill="both", expand=True)
@@ -169,10 +169,10 @@ class DataBase:
             canvas.yview_scroll(-1 * int(event.delta / 120), "units")
     
         canvas.bind_all("<MouseWheel>", on_mouse_wheel)
-    
+        
         self.findwindow.mainloop()
-
-
+        DataBase()
+        
     # Delete Record:
     def deleterecord_fn(self):
         self.window.destroy()
