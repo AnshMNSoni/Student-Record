@@ -28,3 +28,17 @@ Follow these steps to run the project locally:
 1. Clone this repository to your local machine:
    ```bash
    git clone https://github.com/yourusername/student-record-database.git
+
+2. Navigate to the project directory:
+   ```bash
+   cd student-record-database
+3. Run the application:
+   ```bash
+   python app.py
+
+---
+## 👉 Contributing
+
+Contributions are welcome! If you have ideas for new features or enhancements, feel free to fork this repository and open a pull request.
+
+## Thankyou
