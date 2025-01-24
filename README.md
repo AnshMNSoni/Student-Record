@@ -40,5 +40,3 @@ Follow these steps to run the project locally:
 ## 👉 Contributing
 
 Contributions are welcome! If you have ideas for new features or enhancements, feel free to fork this repository and open a pull request.
-
-## Thankyou
