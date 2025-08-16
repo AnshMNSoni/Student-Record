@@ -4,6 +4,21 @@ A simple yet powerful **Student Record Database System** built using **Python** 
 
 ---
 
+## 👉 Preview
+### 1️⃣ Home Screen
+<img width="718" height="461" alt="image" src="https://github.com/user-attachments/assets/c5af1c91-37f9-46d8-8716-4fe9807cf1a8" />
+
+### 2️⃣ Add Student
+<img width="646" height="572" alt="image" src="https://github.com/user-attachments/assets/7d94f2ac-f726-4dd3-8f87-13b3a0027704" />
+
+### 3️⃣ All Records 
+<img width="978" height="518" alt="image" src="https://github.com/user-attachments/assets/bce8b925-c18d-49ec-a64c-c30932209f55" />
+
+### 4️⃣ Update Records
+<img width="615" height="334" alt="image" src="https://github.com/user-attachments/assets/bc8bf0ff-5c00-4f28-aeb7-5b2274000839" />
+
+---
+
 ## 👉 Features
 
 - **Add Record:** Add new student details to the database.
